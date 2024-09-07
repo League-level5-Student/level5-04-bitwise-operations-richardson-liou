@@ -31,11 +31,13 @@ public class _02_Rotate {
     int rotateLeft(int value, int rotateAmount) {
     	int leftShift = value << rotateAmount;
         int rightShift = value >>> (32 - rotateAmount);
-        return leftShift | rightShift;
+        return leftShift + rightShift;
     }
     
     int rotateRight(int value, int rotateAmount) {
-        return -1;
+        int rightShift = value >>> rotateAmount;
+        int leftShift = value << (32-rotateAmount);
+        return rightShift + leftShift;
     }
     
     @Test

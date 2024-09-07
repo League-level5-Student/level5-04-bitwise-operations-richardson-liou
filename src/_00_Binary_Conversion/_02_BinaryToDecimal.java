@@ -30,7 +30,29 @@ import org.junit.jupiter.api.Test;
  */
 public class _02_BinaryToDecimal {
     int convertBinaryStringToDecimalInt(String binStr) {
-        return -1;
+    	int numSet[] = new int[binStr.length()];
+    	int solution = 0;
+    	
+    	for(int i = 0; i < binStr.length(); i++) {
+			Character c = binStr.charAt(binStr.length()-i-1);
+			int cInt = Integer.parseInt(c+"");
+			numSet[i] = cInt;
+		} 
+    	int multipliers[] = new int[binStr.length()];
+    	for(int k = 0; k < binStr.length();  k++) {
+    		double x = Math.pow(2, k);
+    		multipliers[k] = (int) (1 * x);
+    		System.out.println("mult of " + k + ": " + multipliers[k]);
+    	}
+    	
+    	for(int i = 0; i < binStr.length(); i++) {
+    		int multiplied = (numSet[i] * multipliers[i]);
+    		solution = solution + multiplied;
+			System.out.println("Multiplied total: " + multiplied);
+			System.out.println("Total: " + solution);
+    	}
+    	
+        return solution;
     }
 
     @Test
