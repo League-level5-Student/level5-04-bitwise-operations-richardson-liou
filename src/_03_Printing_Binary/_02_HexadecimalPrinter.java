@@ -52,20 +52,42 @@ public class _02_HexadecimalPrinter implements ActionListener {
      * You don't have to handle negative numbers unless you want the challenge!
      */
     String binaryToHex(String binaryStr) {
-    	int dividend = Integer.parseInt(binaryToDec(binaryStr));
-		System.out.println("Binary StringP: " + binaryStr);
-		System.out.println("dividend:   " + dividend);
-		int[] remainders = new int[8];
-		for (int i = remainders.length - 1; i > 0; i--) {
-			remainders[i] = dividend % 16;
-			dividend = (dividend - remainders[i]) / 16;
-			System.out.println(remainders[i] + ", " + dividend);
-		}
-		return binaryStr;
-    }
+    	String hexVal = "";
+        String binSub;
+      	for (int i = 0; i < binaryStr.length(); i+= 4) {
+  			binSub = binaryStr.substring(i, i+4);
+  			if(Integer.parseInt(binSub,2) < 10) {
+  				hexVal = hexVal + Integer.parseInt(binSub,2);
+  			}else {
+  				switch(binSub) {
+  				case("1111"):
+  					hexVal = hexVal + "F";
+  					break;
+  				case("1110"):
+  					hexVal = hexVal + "E";
+  					break;
+  				case("1101"):
+  					hexVal = hexVal + "D";
+  					break;
+  				case("1011"):
+  					hexVal = hexVal + "C";
+  					break;
+  				case("0111"):
+  					hexVal = hexVal + "B";
+  					break;
+  				case("0110"):
+  					hexVal = hexVal + "A";
+  					break;
+  				}
+  			}
+  		}
+      	return hexVal;
+      }
+    
     
     String binaryToDec(String binaryStr) {
-        return "-";
+    	int decimalValue = Integer.parseInt(binaryStr, 2);
+        return decimalValue + "";
     }
 
     /*
@@ -75,9 +97,11 @@ public class _02_HexadecimalPrinter implements ActionListener {
         if (binaryStr.length() != 8) {
             return "-";
         }
-
-        return "-";
+        int decimalValue = Integer.parseInt(binaryStr, 2);
+        char asciiChar = (char) decimalValue;
+		return asciiChar +"";
     }
+    
     
     public static void main(String[] args) {
         new _02_HexadecimalPrinter().start();
